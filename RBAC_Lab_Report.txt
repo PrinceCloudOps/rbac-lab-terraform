@@ -1,0 +1,3 @@
+Role: Owner | Principal: edfef7b5-c332-4986-900c-d1790b54afcb | Scope: /subscriptions/c0c22a12-f3e7-47c0-9b89-d430549070fa/resourceGroups/RG-Hybrid-Identity-Lab/providers/Microsoft.Compute/virtualMachines/FS01
+Role: Reader | Principal: 14e4cc40-2297-450a-8ccc-0bbfec007986 | Scope: /subscriptions/c0c22a12-f3e7-47c0-9b89-d430549070fa/resourceGroups/RG-Hybrid-Identity-Lab/providers/Microsoft.Compute/virtualMachines/FS01
+Role: Virtual Machine Contributor | Principal: d8f02827-6890-4d82-9a64-1d03b2a57db0 | Scope: /subscriptions/c0c22a12-f3e7-47c0-9b89-d430549070fa/resourceGroups/RG-Hybrid-Identity-Lab/providers/Microsoft.Compute/virtualMachines/FS01
