@@ -85,3 +85,13 @@ az vm restart -g "RG-Hybrid-Identity-Lab" -n "FS01" --no-wait
 ## Key Takeaways
 1. **Lateral Movement Mitigation:** Limiting cloud operations personas to specific workload endpoints prevents compromise of adjacent Tier-0 resources like `DC01`.
 2. **Deterministic Governance:** Defining access through Terraform allows security teams to peer-review identity changes via pull requests and eliminate configuration drift.
+
+## Troubleshooting & Lessons Learned
+
+* **RBAC Token Caching & Propagation Delays:** 
+  * **Issue:** After successfully applying the role assignments via Terraform, attempting to execute a VM restart command immediately via Azure CLI resulted in an `AuthorizationFailed` error stating: *"If access was recently granted, please refresh your credentials."*
+  * **Resolution:** Azure RBAC assignments can take a few minutes to propagate across the control plane, and existing CLI sessions cache access tokens. Running `az logout` and re-authenticating forced a fresh token claim, allowing the newly assigned permissions to apply correctly.
+
+* **Protecting Infrastructure State & Credentials:** 
+  * **Issue:** Terraform local state (`.tfstate`) and variable files (`.tfvars`) often contain sensitive Object IDs, tenant information, and infrastructure metadata that must not be exposed in public repositories.
+  * **Resolution:** Implemented a strict `.gitignore` prior to the initial commit to ensure local state files and provider locks were decoupled from version control, preventing credential leakage.
